@@ -1,46 +1,327 @@
-.container {
-  width: 70%;
-  margin: auto;
-  text-align: center;
+
+
+:root {
+  --primary-color: #4ECCA3;
+  --secondary-color: #393E46;
+  --accent-color: #FF6B6B;
+  --text-color: #EEEEEE;
+  --dark-bg: #222831;
+  --light-bg: #2D4059;
+  --dice-size: 120px;
+  --border-radius: 10px;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --transition: all 0.3s ease;
 }
 
-.dice {
-  text-align: center;
-  display: inline-block;
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background-color: #393E46;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-family: 'Indie Flower', cursive;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: var(--dark-bg);
+  margin-top: auto;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+
+footer p {
+  color: var(--text-color);
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Player Setup Form */
+.player-setup {
+  background: var(--dark-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.player-setup h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  font-family: 'Lobster', cursive;
+  font-size: 2.5rem;
+}
+
+.player-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.form-group input {
+  padding: 0.8rem;
+  border: 2px solid var(--light-bg);
+  border-radius: var(--border-radius);
+  background: #f8f9fa;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(78, 204, 163, 0.3);
+}
+
+/* Game Area */
+.game-area {
+  display: none; /* Initially hidden */
+  width: 100%;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 h1 {
-  margin: 30px;
   font-family: 'Lobster', cursive;
-  text-shadow: 5px 0 #232931;
-  font-size: 8rem;
-  color: #4ECCA3;
-}
-h2{
-  font-family: 'Indie Flower', cursive;
-  font-size: 2rem;
-   color: #4ECCA3;
+  font-size: 3.5rem;
+  color: var(--primary-color);
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5rem;
 }
 
-p {
-  font-size: 2rem;
-  color: #4ECCA3;
-  font-family: 'Indie Flower', cursive;
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
 }
 
-img {
-  width: 80%;
+.game-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-footer {
-  margin-top: 5%;
-  color: #EEEEEE;
+.player {
   text-align: center;
+  background: var(--dark-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 300px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.player h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dice {
+  width: var(--dice-size);
+  height: var(--dice-size);
+  margin: 0 auto 1rem;
+  perspective: 1000px;
+}
+
+.dice-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease-out;
+  transform-style: preserve-3d;
+}
+
+.rolling .dice-img {
+  animation: roll 1s ease-out;
+}
+
+@keyframes roll {
+  0% { transform: rotateX(0) rotateY(0); }
+  100% { transform: rotateX(720deg) rotateY(720deg); }
+}
+
+.score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-top: 1rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
   font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+  transition: var(--transition);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 160px;
+  justify-content: center;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.result {
+  text-align: center;
+  min-height: 2rem;
+  margin: 1rem 0;
+}
+
+.result p {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin: 0;
+}
+
+.vs {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 1rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Winner animation */
+@keyframes winner {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.winner {
+  animation: winner 0.5s ease-in-out 3;
+  position: relative;
+  border: 3px solid var(--primary-color);
+}
+
+.winner::after {
+  content: '🎉';
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  font-size: 2rem;
+  animation: confetti 1s ease-out;
+}
+
+@keyframes confetti {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  100% { transform: translateY(100px) rotate(360deg); opacity: 0; }
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .game-board {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .vs {
+    align-self: center;
+    font-size: 2.5rem;
+    margin: 0 2rem;
+  }
+  
+  h1 {
+    font-size: 4.5rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --secondary-color: #1a1a2e;
+    --dark-bg: #16213e;
+    --light-bg: #1f4068;
+    --text-color: #e6e6e6;
+  }
+  
+  .form-group input {
+    background: #2d3748;
+    color: #e2e8f0;
+    border-color: #4a5568;
+  }
 
 }

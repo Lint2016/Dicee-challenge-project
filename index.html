@@ -2,33 +2,96 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Dicee</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fun dice game between two players">
+    <title>Dicee Game - Roll the Dice!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="images/learn.jpg" type="image/x-icon">
+    <!-- SweetAlert2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   </head>
   <body>
-
     <div class="container">
-      <h1>Refresh Me</h1>
-      <h2>Please refresh the page 2 play</h2>
-
-      <div class="dice">
-        <p>Louis</p>
-        <img class="img1" src="images/dice6.png">
+      <!-- Player Setup Form -->
+      <div id="playerSetup" class="player-setup">
+        <h1>Welcome to Dicee Game!</h1>
+        <form id="playerForm" class="player-form">
+          <div class="form-group">
+            <label for="player1Name">Player 1 Name:</label>
+            <input type="text" id="player1Name" required minlength="2" maxlength="12" placeholder="Enter Player 1 name">
+          </div>
+          <div class="form-group">
+            <label for="player2Name">Player 2 Name:</label>
+            <input type="text" id="player2Name" required minlength="2" maxlength="12" placeholder="Enter Player 2 name">
+          </div>
+          <div class="form-group">
+            <label for="winningScore">Winning Score:</label>
+            <input type="number" id="winningScore" min="1" max="20" value="5">
+          </div>
+          <button type="submit" class="btn">Start Game</button>
+        </form>
       </div>
 
-      <div class="dice">
-        <p>Natalie</p>
-        <img class="img2" src="images/dice6.png">
-      </div>
+      <!-- Game Area (initially hidden) -->
+      <div id="gameArea" class="game-area" style="display: none;">
+        <header>
+          <h1>Dicee Game</h1>
+          <p class="subtitle">First to <span id="winningScoreDisplay">5</span> wins!</p>
+        </header>
 
+        <main>
+          <div class="game-board">
+            <div class="player">
+              <h2 id="player1NameDisplay">Player 1</h2>
+              <div class="dice">
+                <img class="dice-img" id="player1Dice" src="images/dice6.png" alt="Player 1's dice">
+              </div>
+              <div class="score">Score: <span id="player1Score">0</span></div>
+            </div>
+
+            <div class="vs">vs</div>
+
+            <div class="player">
+              <h2 id="player2NameDisplay">Player 2</h2>
+              <div class="dice">
+                <img class="dice-img" id="player2Dice" src="images/dice6.png" alt="Player 2's dice">
+              </div>
+              <div class="score">Score: <span id="player2Score">0</span></div>
+            </div>
+          </div>
+
+
+          <div class="controls">
+            <button id="rollButton" class="btn"> Roll Dice</button>
+            <button id="newGameButton" class="btn btn-secondary"> New Game</button>
+          </div>
+
+
+          <div id="result" class="result">
+            <p>Click 'Roll Dice' to start!</p>
+          </div>
+        </main>
+      </div>
     </div>
 
-<script src="index.js"></script>
+    <footer id="year">
+      <p>Lint | <span id="currentYear">2025</span> Dicee Game</p>
+    </footer>
+
+    
+    <!-- Audio Elements 
+    <audio id="diceSound" src="sounds/dice-roll.mp3" preload="auto"></audio>
+    <audio id="winSound" src="sounds/win.mp3" preload="auto"></audio>-->
+    
+    <script src="index.js"></script>
+    
   </body>
 
-  <footer>
-    www 🎲 Louis 🎲 com
-  </footer>
 </html>
